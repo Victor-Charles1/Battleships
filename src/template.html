@@ -1,11 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Battleship Game</title>
+  <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
+  <div class="container">
+    <header>
+      <h1>⚓ BATTLESHIP ⚓</h1>
+      <p>Strategically place your ships and sink your opponent's fleet!</p>
+    </header>
     
+    <div class="game-info">
+     
+      
+      <div class="info-panel">
+        <h3>Your Fleet</h3>
+        <div class="ship-list" id="ship-list"></div>
+      </div>
+    </div>
+    
+    <div class="boards-container">
+      <div class="player-board">
+        <div class="board-title">Your Board</div>
+        <div class="board" id="player-board"></div>
+      </div>
+      
+      <div class="opponent-board">
+        <div class="board-title">Enemy Board</div>
+        <div class="board" id="opponent-board"></div>
+      </div>
+      <div class="info-panel">
+        <h3>Game Status</h3>
+        <div class="message" id="message">Place your ships on the board. Click to rotate.</div>
+        <div class="controls">
+          <button id="rotate-btn">Rotate Ship (R)</button>
+          <button id="start-btn">Start Game</button>
+          <button id="restart-btn">Restart Game</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="main.js"></script>
 </body>
 </html>

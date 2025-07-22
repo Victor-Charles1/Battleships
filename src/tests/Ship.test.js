@@ -1,11 +1,11 @@
-import { Ship } from "../modules/Ship.js";
+import Ship  from "../modules/Ship.js";
 
 
 describe('Ship', () => {
     let carrier;
   
     beforeEach(() => {
-      carrier = Ship(carrier,5); // Fresh instance before each test
+      carrier = Ship('carrier',5); // Fresh instance before each test
     });
   
     describe('hit() method', () => {

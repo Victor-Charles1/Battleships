@@ -1,7 +1,5 @@
 
-import { Player } from '../modules/Player.js';
-//import { Ship } from '../modules/Ship.js';
-//import { Gameboard } from '../modules/Gameboard.js';
+import  Player  from '../modules/Player.js';
 
 describe('Player Factory', () => {
     let humanPlayer;
@@ -17,7 +15,7 @@ describe('Player Factory', () => {
         };
 
         // Create players
-        humanPlayer = Player();
+        humanPlayer = Player('Human');
         computerPlayer = Player('Computer', true);
     });
 

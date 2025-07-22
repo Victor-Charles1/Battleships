@@ -1,30 +1,29 @@
-export function Ship(name,length) {
-    const coordinates =[]
-    
-    const ship = {
-      hitCount :0,
-      length,
-      coordinates,
-      name,
-
-      hit() {
-        if(this.isSunk()===true){
-            return 'Ship is already sunk'
-            }else{
-            this.hitCount++;
-        }
-      },
-      isSunk(){
-        if(this.hitCount === length){
-            return true
-            }else{
-            return false
-      }
-    },
-    getCoordinates(){
-      return coordinates;
-
-    }
+// src/modules/Ship.js
+const Ship = (name, length) => {
+  if (typeof name !== 'string' || name.trim() === '') {
+    throw new Error('Ship name must be a non-empty string');
   }
-  return ship;
-}
+  if (length <= 0 || !Number.isInteger(length)) {
+    throw new Error('Ship length must be a positive integer');
+  }
+
+  let hitCount = 0;
+  
+  const hit = () => {
+    if (isSunk()) {return 'Ship is already sunk'};
+    hitCount++;
+    return true;
+  };
+  
+  const isSunk = () => hitCount >= length;
+  
+  return {
+    get name() { return name; },
+    get length() { return length; },
+    get hitCount() { return hitCount; },
+    hit,
+    isSunk
+  };
+};
+
+export default Ship;

@@ -1,4 +1,4 @@
-import {Gameboard} from '../modules/Gameboard.js'
+import Gameboard from '../modules/Gameboard.js'
 
 describe('Gameboard ', () => {
     let testBoard;
@@ -28,19 +28,19 @@ describe('Gameboard ', () => {
         test('places horizontal ship correctly', () => {
             //const ship = Ship(3);
             expect(testBoard.placeShip(fleet.submarine, [2, 3], 'horizontal')).toBe(true);
-            expect(testBoard.grid[2][3]).toBe('submarine');
-            expect(testBoard.grid[4][3]).toBe('submarine');
+            expect(testBoard.grid[2][3]).toBe(fleet.submarine);
+            expect(testBoard.grid[4][3]).toBe(fleet.submarine);
         });
 
         test('places vertical ship correctly', () => {
             expect(testBoard.placeShip(fleet.destroyer, [3, 0], 'vertical')).toBe(true);
-            expect(testBoard.grid[3][0]).toBe('destroyer');
-            expect(testBoard.grid[3][1]).toBe('destroyer');
-            console.log(fleet.destroyer.coordinates)//array of coords
+            expect(testBoard.grid[3][0]).toBe(fleet.destroyer);
+            expect(testBoard.grid[3][1]).toBe(fleet.destroyer);
+           
             expect(testBoard.placeShip(fleet.carrier, [0, 0], 'vertical')).toBe(true);
-            expect(testBoard.grid[0][0]).toBe('carrier');
-            expect(testBoard.grid[0][4]).toBe('carrier');
-            console.log(fleet.carrier.coordinates)//array of coords
+            expect(testBoard.grid[0][0]).toBe(fleet.carrier);
+            expect(testBoard.grid[0][4]).toBe(fleet.carrier);
+            
 
         });
 
@@ -62,9 +62,10 @@ describe('Gameboard ', () => {
             //place ship
             expect(testBoard.placeShip(fleet.carrier, [4, 0], 'vertical')).toBe(true);
             // Verify the board was marked
-            expect(testBoard.grid[4][0]).toBe('carrier');         
+            expect(testBoard.grid[4][0]).toBe(fleet.carrier);         
             // Attack and verify return value
             expect(testBoard.receiveAttack([4, 0])).toBe(true);
+            expect(fleet.carrier.hitCount).toBe(1)
             // Verify the ship hit counter
             testBoard.receiveAttack([4,1])
             expect(fleet.carrier.hitCount).toBe(2)
@@ -93,7 +94,7 @@ describe('Gameboard ', () => {
         test('returns true when all ships are sunk', () => {
             const fleet = testBoard.createFleet();
             Object.values(fleet).forEach(ship => {
-                testBoard.placeShip(ship, 0, 0, 'horizontal');
+                testBoard.placeShip(ship, [0, 0], 'horizontal');
                 while (!ship.isSunk()) ship.hit();
             });
             expect(testBoard.areAllSunk()).toBe(true);
@@ -101,11 +102,3 @@ describe('Gameboard ', () => {
     });
 });
 
-// test('ship references are consistent', () => {
-//     const testBoard2 = Gameboard(10);
-//     const fleet = testBoard2.createFleet();
-//     testBoard2.placeShip(fleet.carrier, [0, 0], 'horizontal');
-    
-//     // Verify the ship on grid is the same instance
-//     expect(testBoard2.fleet).toBe(fleet.carrier);
-// });
