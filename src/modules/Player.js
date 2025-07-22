@@ -5,6 +5,7 @@
  */
 
 import Gameboard from './Gameboard.js'
+import Ship from './Ship.js';
 
     // Player factory function
         // --------------------------
@@ -12,9 +13,14 @@ export function Player(name, isComputer = false){
     
     const gameboard = Gameboard();
     
-    const createFleet = gameboard.createFleet()
-    
-    const fleet = createFleet;
+    const createFleet = () => ({
+        carrier: Ship('carrier',5),
+        battleship: Ship('battleship',4),
+        cruiser: Ship('cruiser',3),
+        submarine: Ship('submarine',3),
+        destroyer: Ship('destroyer',2)
+    });
+    const fleet = createFleet();
     
     // Computer places ships randomly
     const placeShipsRandomly = () => {

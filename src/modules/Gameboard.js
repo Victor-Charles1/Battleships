@@ -1,4 +1,6 @@
-import Ship from './Ship.js';
+//import Ship from './Ship.js';
+
+import Ship from "./Ship";
 
 const Gameboard = (size = 10) => {
   const grid = Array(size).fill(null).map(() => Array(size).fill(null));
@@ -20,7 +22,7 @@ const Gameboard = (size = 10) => {
       for (let i = 0; i < ship.length; i++) {
         if (grid[x + i][y] !== null) return false;
       }
-    } else {
+    } else if(dir === 'vertical') {
       if (y + ship.length > size) return false;
       for (let i = 0; i < ship.length; i++) {
         if (grid[x][y + i] !== null) return false;
@@ -44,7 +46,7 @@ const Gameboard = (size = 10) => {
     } else if (dir === 'vertical') {
       for (let i = 0; i < ship.length; i++) {
         grid[x][y + i] =  ship;
-        temp.push([x , y+1]);
+        temp.push([x , y+i]);
       }
     }
     ships.push(ship);
@@ -68,11 +70,13 @@ const Gameboard = (size = 10) => {
         grid[x][y] = 'miss';
         return false ;
       }
-      for (const [ship, positions] of shipPositions) {
-        ship.hit()
-        grid[x][y] = 'hit';
-        return true
-      }   
+      for (const [ship, temp] of shipPositions) {
+        if (temp.some(([px, py]) => px === x && py === y)) {
+          ship.hit()
+          grid[x][y] = 'hit';
+          return true;
+        }
+      }  
   };
   
   const areAllSunk = () => {
@@ -92,7 +96,7 @@ const Gameboard = (size = 10) => {
   return {
     grid,
     missedAttacks,
-    ships,
+    shipPositions,
     placeShip,
     receiveAttack,
     areAllSunk,
