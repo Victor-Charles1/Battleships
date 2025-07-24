@@ -14,12 +14,24 @@
     </header>
     
     <div class="game-info">
-     
-      
       <div class="info-panel">
         <h3>Your Fleet</h3>
+        <aside class="instructions">
+          <h4>How to Play:</h4>
+          <details>
+            <summary></summary>
+            <ul>
+                <li>Drag ships from "Your Fleet" to your board</li>
+                <li>Press R or click "Rotate Ship" to change ship orientation</li>
+                <li>Place all 5 ships to start the game</li>
+                <li>Click on enemy board to attack during gameplay</li>
+                <li>Sink all enemy ships to win!</li>
+            </ul>
+          </details>
+        </aside>
         <div class="ship-list" id="ship-list"></div>
       </div>
+      
     </div>
     
     <div class="boards-container">
@@ -32,14 +44,15 @@
         <div class="board-title">Enemy Board</div>
         <div class="board" id="opponent-board"></div>
       </div>
-    </div>
-    <div class="info-panel">
-      <h3>Game Status</h3>
-      <div class="message" id="message">Place your ships on the board. Click to rotate.</div>
-      <div class="controls">
-        <button id="rotate-btn">Rotate Ship (R)</button>
-        <button id="start-btn">Start Game</button>
-        <button id="restart-btn">Restart Game</button>
+      <div class="info-panel">
+        <h3>Game Status</h3>
+        <div class="message" id="message">Place your ships on the board. Click to rotate.</div>
+        <div class="controls">
+          <button id="rotate-btn">Rotate Ship (R)</button>
+          <!-- <button id="place-btn">Place Ship Randomly (R)</button> -->
+          <button id="start-btn">Start Game</button>
+          <button id="restart-btn">Restart Game</button>
+        </div>
       </div>
     </div>
   </div>

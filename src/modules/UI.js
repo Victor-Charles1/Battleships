@@ -33,9 +33,13 @@ const UIController = (gameController) => {
           if (currentShip) {
             const direction = gameController.getPlacementDirection();
             if (direction === 'horizontal' && 
-                y === 0 && 
+                y ===0 && 
                 x <= 10 - currentShip.length) {
               cell.classList.add('ship-preview');
+            }else if (direction === 'vertical' &&  
+              y <= 10 - currentShip.length&& 
+              x === 0 ) {
+            cell.classList.add('ship-preview');
             }
           }
         } else if (!isPlayerBoard && gameController.getGameState() === 'playing') {
@@ -89,7 +93,7 @@ const UIController = (gameController) => {
         updateMessage('All ships placed! Press Start Game.');
       } else {
         const currentShip = gameController.getCurrentShip();
-        updateMessage(`Place your ${currentShip} (${currentShip.length} units)`);
+        updateMessage(`Place your ${currentShip.name} (${currentShip.length} units)`);
       }
     }
   };
@@ -124,8 +128,9 @@ const UIController = (gameController) => {
     
     if (rotateBtn) {
       rotateBtn.addEventListener('click', () => {
-        gameController.rotateShip();
+        
         updateMessage(`Ship orientation: ${gameController.getPlacementDirection()}`);
+        gameController.rotateShip();
         renderPreview();
       });
     }
@@ -154,9 +159,10 @@ const UIController = (gameController) => {
     // Keyboard shortcuts
     document.addEventListener('keydown', (e) => {
       if (e.key === 'r' || e.key === 'R') {
-        gameController.rotateShip();
         updateMessage(`Ship orientation: ${gameController.getPlacementDirection()}`);
+        gameController.rotateShip();
         renderPreview();
+        
       }
     });
   };
